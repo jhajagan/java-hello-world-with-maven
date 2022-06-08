@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    environment {
+         PATH = "/opt/apache-maven-3.8.5/bin:$PATH"
+    }
+        stages {
+            stage ("clone code"){
+                steps{
+                    git credentialsId: 'github-credentials', url: 'https://github.com/jhajagan/java-hello-world-with-maven.git'
+                }
+            }
+            stage ("clone code"){
+                steps{
+                    sh "mvn clean install"
+                }
+            }
+            
+        }
+    }
